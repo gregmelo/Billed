@@ -60,7 +60,7 @@ export default class {
             }
           });
           // // Ajout du trie des factures par date décroissante
-          // bills.sort((a, b) => new Date(b.date) - new Date(a.date));
+          // bills.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
           console.log("length", bills.length);
           return bills;
         });

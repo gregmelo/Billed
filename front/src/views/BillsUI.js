@@ -19,9 +19,27 @@ const row = (bill) => {
     `)
   }
 
-const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
-}
+  const rows = (data) => {
+    // Vérifie si 'data' existe et contient des éléments
+    if (data && data.length) {
+      // Trie les données par date décroissante
+      data.sort((a, b) => {
+        // Convertit les dates en objets Date et compare
+        if (new Date(a.date) < new Date(b.date)) {
+          return 1; // Si la date de 'a' est antérieure à celle de 'b', place 'b' avant 'a'
+        } else {
+          return -1; // Sinon, place 'a' avant 'b'
+        }
+      });
+      // Mappe chaque élément de 'data' en appelant la fonction 'row' et joint les résultats en une seule chaîne
+      return data.map(bill => row(bill)).join("");
+    } else {
+      // Retourne une chaîne vide si 'data' est vide ou n'existe pas
+      return "";
+    }
+  };
+  
+  
 
 export default ({ data: bills, loading, error }) => {
   
